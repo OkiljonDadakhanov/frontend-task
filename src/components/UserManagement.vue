@@ -249,32 +249,36 @@ const cancelForm = () => {
 <template>
   <div class="space-y-6">
     <!-- Header -->
-    <div class="flex items-center justify-between">
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h1 class="text-3xl font-bold text-gray-900">User Management</h1>
-        <p class="text-gray-500">Manage users, roles, and permissions</p>
+  <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">User Management</h1>
+  <p class="text-gray-500 text-sm sm:text-base">Manage users, roles, and permissions</p>
       </div>
-      <Button @click="openUserForm" class="bg-blue-600 hover:bg-blue-700">
+  <Button @click="openUserForm" class="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
         Add New User
       </Button>
     </div>
 
     <!-- User Table -->
-    <div class="bg-white rounded-lg shadow">
-      <DataTable :data="users" :columns="columns" :loading="false" />
+  <div class="bg-white rounded-lg shadow overflow-x-auto">
+        <DataTable
+          :data="users"
+          :columns="columns"
+          :loading="false"
+        />
     </div>
 
     <!-- User Form Modal -->
     <div
       v-if="showUserForm"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-2"
     >
-      <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
-        <h2 class="text-xl font-semibold mb-4">
+  <div class="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md mx-0 sm:mx-4">
+  <h2 class="text-lg sm:text-xl font-semibold mb-4">
           {{ isEditing ? "Edit User" : "Add New User" }}
         </h2>
 
-        <form @submit.prevent="saveUser" class="space-y-4">
+  <form @submit.prevent="saveUser" class="space-y-3 sm:space-y-4">
           <div>
             <Label for="name">Name</Label>
             <Input
@@ -323,7 +327,7 @@ const cancelForm = () => {
             </select>
           </div>
 
-          <div class="flex gap-3 pt-4">
+          <div class="flex flex-col gap-2 sm:flex-row sm:gap-3 pt-4">
             <Button
               type="submit"
               :disabled="loading"
