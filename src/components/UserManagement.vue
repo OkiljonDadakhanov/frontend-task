@@ -193,7 +193,6 @@ const saveUser = () => {
       //     status: userForm.status,
       //   };
       // }
-       if (isEditing.value && editingUser.value) {
       // Update existing user
       users.value = users.value.map((u) =>
         u.id === editingUser.value!.id ? { ...u, ...userForm } : u
