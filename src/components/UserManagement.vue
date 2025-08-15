@@ -181,18 +181,23 @@ const saveUser = () => {
   setTimeout(() => {
     if (isEditing.value && editingUser.value) {
       // Update existing user
-      const index = users.value.findIndex(
-        (u) => u.id === editingUser.value!.id
+      // const index = users.value.findIndex(
+      //   (u) => u.id === editingUser.value!.id
+      // );
+      // if (index !== -1) {
+      //   users.value[index] = {
+      //     ...editingUser.value,
+      //     name: userForm.name,
+      //     email: userForm.email,
+      //     role: userForm.role,
+      //     status: userForm.status,
+      //   };
+      // }
+       if (isEditing.value && editingUser.value) {
+      // Update existing user
+      users.value = users.value.map((u) =>
+        u.id === editingUser.value!.id ? { ...u, ...userForm } : u
       );
-      if (index !== -1) {
-        users.value[index] = {
-          ...editingUser.value,
-          name: userForm.name,
-          email: userForm.email,
-          role: userForm.role,
-          status: userForm.status,
-        };
-      }
     } else {
       // Add new user
       const newUser: User = {
